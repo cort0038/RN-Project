@@ -2,12 +2,15 @@ import {StyleSheet} from "react-native"
 
 export const styles = StyleSheet.create({
 	//region AddIdea Styles
-	containerAddIdea: {
+	viewAddIdea: {
 		flex: 1,
 		padding: 20,
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: "#f5f5f5"
+	},
+	containerAddIdea: {
+		flex: 1
 	},
 	titleAddIdea: {
 		fontSize: 24,
@@ -94,10 +97,13 @@ export const styles = StyleSheet.create({
 	//endregion
 
 	//region AddPerson Styles
-	containerAddPerson: {
+	viewAddPerson: {
 		flex: 1,
 		padding: 20,
-		backgroundColor: "#f0f0f0"
+		backgroundColor: "#f5f5f5"
+	},
+	containerAddPerson: {
+		flex: 1
 	},
 	labelAddPerson: {
 		fontSize: 16,
@@ -113,14 +119,6 @@ export const styles = StyleSheet.create({
 		padding: 10,
 		marginBottom: 20,
 		backgroundColor: "#fff"
-	},
-	buttonContainerAddPerson: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		marginTop: 20
-	},
-	datePickerAddPerson: {
-		marginBottom: 20
 	},
 	//endregion
 
@@ -173,10 +171,9 @@ export const styles = StyleSheet.create({
 	},
 	deleteButtonIdea: {
 		backgroundColor: "#FF6347",
-		padding: 10,
-		borderRadius: 5,
-		alignItems: "center",
-		marginTop: 10
+		padding: 15,
+		borderRadius: 8,
+		alignItems: "center"
 	},
 	deleteButtonTextIdea: {
 		color: "#fff",
