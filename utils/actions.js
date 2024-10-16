@@ -32,14 +32,14 @@ export const takePicture = async setImage => {
 	}
 }
 
-export const savePerson = (name, dob, addPerson, navigation) => {
-	if (name && dob) {
-		const [year, month, day] = dob.split("/")
-		const formattedDob = `${year}-${month}-${day}`
-		const date = new Date(formattedDob)
+export const savePerson = (name, date, addPerson, navigation) => {
+	if (name && date) {
+		const [year, month, day] = date.split("/")
+		const formattedDate = `${year}-${month}-${day}`
+		const currentDate = new Date(formattedDate)
 
-		if (!isNaN(date.getTime())) {
-			addPerson(name, date.toISOString())
+		if (!isNaN(currentDate.getTime())) {
+			addPerson(name, currentDate.toISOString())
 			navigation.navigate("PeopleScreen")
 		} else {
 			alert("Please select a valid date.")
