@@ -1,5 +1,5 @@
+import DateTimePicker from "@react-native-community/datetimepicker"
 import {GlobalContext} from "context/GlobalContext"
-
 import React, {useContext, useState} from "react"
 import {
 	Keyboard,
@@ -11,14 +11,18 @@ import {
 	TouchableWithoutFeedback,
 	View
 } from "react-native"
-import DatePicker from "react-native-modern-datepicker"
 import {savePerson} from "utils/actions"
 import {styles} from "utils/styles"
 
 export const AddPersonScreen = ({navigation}) => {
 	const {addPerson} = useContext(GlobalContext)
 	const [name, setName] = useState("")
-	const [date, setDate] = useState("")
+	const [date, setDate] = useState(new Date())
+
+	const onChange = (_event, selectedDate) => {
+		const currentDate = selectedDate
+		setDate(currentDate)
+	}
 
 	return (
 		<KeyboardAvoidingView
@@ -26,7 +30,7 @@ export const AddPersonScreen = ({navigation}) => {
 			behavior={Platform.OS === "ios" ? "padding" : "height"}>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<View style={styles.viewAddPerson}>
-					<Text style={styles.labelAddPerson}>Name</Text>
+					<Text style={styles.labelAddPerson}>Name:</Text>
 					<TextInput
 						style={styles.inputAddPerson}
 						placeholder="Enter name"
@@ -34,26 +38,31 @@ export const AddPersonScreen = ({navigation}) => {
 						onChangeText={setName}
 					/>
 
-					<Text style={styles.labelAddPerson}>Date of Birth</Text>
-					<DatePicker
-						mode="calendar"
-						onDateChange={setDate}
-						style={styles.datePickerAddPerson}
-					/>
-
-					<TouchableOpacity
-						style={styles.buttonAddIdea}
-						onPress={() => savePerson(name, date, addPerson, navigation)}>
-						<Text style={styles.buttonTextAddIdea}>Save</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						style={styles.deleteButtonIdea}
-						onPress={() => navigation.navigate("PeopleScreen")}>
-						<Text style={styles.deleteButtonTextIdea}>Cancel</Text>
-					</TouchableOpacity>
+					<Text style={styles.labelAddPerson}>Select Date of Birth:</Text>
+					<View style={styles.datePickerAddPerson}>
+						<DateTimePicker
+							testID="dateTimePicker"
+							value={date}
+							mode="date"
+							is24Hour={true}
+							onChange={onChange}
+						/>
+					</View>
 				</View>
 			</TouchableWithoutFeedback>
+			<View style={styles.containerButtonAddPerson}>
+				<TouchableOpacity
+					style={styles.buttonAddIdea}
+					onPress={() => savePerson(name, date, addPerson, navigation)}>
+					<Text style={styles.buttonTextAddIdea}>Save</Text>
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					style={styles.deleteButtonIdea}
+					onPress={() => navigation.navigate("PeopleScreen")}>
+					<Text style={styles.deleteButtonTextIdea}>Cancel</Text>
+				</TouchableOpacity>
+			</View>
 		</KeyboardAvoidingView>
 	)
 }
