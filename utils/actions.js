@@ -1,51 +1,45 @@
-import {Camera} from "expo-camera"
-import * as ImagePicker from "expo-image-picker"
 import {Alert} from "react-native"
 
 export const saveIdea = (text, image, personId, addIdea, navigation) => {
 	if (text && image) {
 		addIdea(personId, text, image)
 		navigation.navigate("IdeaScreen", {personId})
+	} else if (!text && image) {
+		alert("Please provide a name for your idea.")
+	} else if (text && !image) {
+		alert("Please take a picture of your idea.")
 	} else {
-		alert("Please provide both text and image.")
+		alert("Please provide a name for your idea and take a picture.")
 	}
 }
 
-export const takePicture = async setImage => {
-	const {status} = await Camera.requestCameraPermissionsAsync()
+export const takePicture = async (cameraRef, setImage) => {
+	if (cameraRef.current) {
+		let result = await cameraRef.current.takePictureAsync()
+		setImage(result.uri)
+	}
+}
 
-	if (status === "granted") {
-		let result = await ImagePicker.launchCameraAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.Images,
-			allowsEditing: true,
-			aspect: [2, 3],
-			quality: 1
-		})
-
-		if (!result.canceled && result.assets[0].uri) {
-			setImage(result.assets[0].uri)
-		} else {
-			alert("Image capturing was unsuccessful.")
-		}
+export const flipCamera = (facing, setFacing) => {
+	if (facing === "back") {
+		setFacing("front")
 	} else {
-		alert("Camera permission is required.")
+		setFacing("back")
 	}
 }
 
 export const savePerson = (name, date, addPerson, navigation) => {
 	if (name && date) {
-		const [year, month, day] = date.split("/")
-		const formattedDate = `${year}-${month}-${day}`
-		const currentDate = new Date(formattedDate)
-
-		if (!isNaN(currentDate.getTime())) {
-			addPerson(name, currentDate.toISOString())
+		if (!isNaN(date.getTime())) {
+			addPerson(name, date.toISOString())
 			navigation.navigate("PeopleScreen")
 		} else {
 			alert("Please select a valid date.")
 		}
-	} else {
-		alert("Please fill all fields.")
+	} else if (!name && date) {
+		alert("Please provide a name for the person.")
+	} else if (name && !date) {
+		alert("Please select a date of birth.")
 	}
 }
 
