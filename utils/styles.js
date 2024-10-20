@@ -1,7 +1,7 @@
 import {StyleSheet} from "react-native"
 
 export const styles = StyleSheet.create({
-	//region AddIdea Styles
+	//#region AddIdea Styles
 	viewAddIdea: {
 		flex: 1,
 		padding: 20,
@@ -28,8 +28,8 @@ export const styles = StyleSheet.create({
 		backgroundColor: "#fff"
 	},
 	imageAddIdea: {
-		width: 120,
-		height: 180,
+		width: "100%",
+		flex: 1 / 1.2,
 		marginBottom: 20,
 		borderRadius: 8,
 		resizeMode: "cover"
@@ -47,13 +47,53 @@ export const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: "600"
 	},
-	//endregion
+	cameraViewAddIdea: {
+		width: "100%",
+		height: 300,
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	cameraContainer: {
+		flex: 1 / 1.2,
+		justifyContent: "center",
+		width: "100%",
+		marginBottom: 20
+	},
+	message: {
+		textAlign: "center",
+		paddingBottom: 10
+	},
+	camera: {
+		flex: 1
+	},
+	buttonContainer: {
+		flexDirection: "row",
+		alignSelf: "center",
+		display: "flex",
+		alignItems: "flex-end",
+		flex: 1,
+		paddingBottom: 20,
+		gap: 70
+	},
+	button: {
+		borderRadius: 8,
+		paddingHorizontal: 20,
+		paddingVertical: 10,
+		backgroundColor: "#000000"
+	},
+	text: {
+		fontSize: 16,
+		fontWeight: "bold",
+		color: "white"
+	},
 
-	//region People Styles
+	//#endregion
+
+	//#region People Styles
 	containerPeople: {
 		flex: 1,
 		paddingHorizontal: 8,
-		paddingVertical: 10
+		paddingVertical: 8
 	},
 	messagePeople: {
 		textAlign: "center",
@@ -63,7 +103,7 @@ export const styles = StyleSheet.create({
 	},
 	itemContainerPeople: {
 		paddingHorizontal: 10,
-		paddingVertical: 20,
+		paddingVertical: 10,
 		alignItems: "center",
 		borderRadius: 8,
 		backgroundColor: "#FFFFFF",
@@ -82,8 +122,7 @@ export const styles = StyleSheet.create({
 		fontSize: 18,
 		textAlign: "left",
 		fontWeight: "bold",
-		color: "#343a40",
-		marginBottom: 5
+		color: "#343a40"
 	},
 	dobPeople: {
 		fontSize: 16,
@@ -94,9 +133,9 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		marginHorizontal: 10
 	},
-	//endregion
+	//#endregion
 
-	//region AddPerson Styles
+	//#region AddPerson Styles
 	viewAddPerson: {
 		flex: 1,
 		padding: 20,
@@ -104,6 +143,18 @@ export const styles = StyleSheet.create({
 	},
 	containerAddPerson: {
 		flex: 1
+	},
+	containerButtonAddPerson: {
+		flex: 1,
+		padding: 60
+	},
+	buttonAddIdea: {
+		backgroundColor: "#007BFF",
+		padding: 15,
+		borderRadius: 8,
+		width: "100%",
+		alignItems: "center",
+		marginBottom: 10
 	},
 	labelAddPerson: {
 		fontSize: 16,
@@ -120,9 +171,13 @@ export const styles = StyleSheet.create({
 		marginBottom: 20,
 		backgroundColor: "#fff"
 	},
-	//endregion
+	datePickerAddPerson: {
+		marginBottom: 50,
+		alignItems: "flex-start"
+	},
+	//#endregion
 
-	//region Ideas Styles
+	//#region Ideas Styles
 	containerIdea: {
 		flex: 1,
 		padding: 20,
@@ -183,13 +238,13 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "rgba(0, 0, 0, 0.8)", // Semi-transparent background
+		backgroundColor: "rgba(0, 0, 0, 0.8)",
 		padding: 20
 	},
 	fullImageIdea: {
 		width: "100%",
 		height: "80%",
-		resizeMode: "contain", // Maintain aspect ratio
+		resizeMode: "contain",
 		marginBottom: 20
 	},
 	closeButtonIdea: {
@@ -199,7 +254,6 @@ export const styles = StyleSheet.create({
 	},
 	closeButtonTextIdea: {
 		color: "#fff"
-		// fontWeight: "bold", // Optional
 	}
-	//endregion
+	//#endregion
 })

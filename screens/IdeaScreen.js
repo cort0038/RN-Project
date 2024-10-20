@@ -1,3 +1,4 @@
+import {GlobalContext} from "context/GlobalContext"
 import React, {useContext, useState} from "react"
 import {
 	FlatList,
@@ -12,7 +13,6 @@ import {
 } from "react-native"
 import {deleteIdeas} from "utils/actions"
 import {styles} from "utils/styles"
-import {GlobalContext} from "context/GlobalContext"
 
 export const IdeaScreen = ({route}) => {
 	const {personId} = route.params
@@ -48,8 +48,7 @@ export const IdeaScreen = ({route}) => {
 			<KeyboardAvoidingView
 				style={styles.containerIdea}
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
-				keyboardVerticalOffset={100} // Adjust if necessary
-			>
+				keyboardVerticalOffset={100}>
 				<Text style={styles.titleIdea}>Gift Ideas for {person.name}</Text>
 				{person.ideas.length === 0 ? (
 					<Text style={styles.emptyTextIdea}>No ideas added yet.</Text>

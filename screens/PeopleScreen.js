@@ -1,16 +1,15 @@
 import Octicons from "@expo/vector-icons/Octicons"
+import {GlobalContext} from "context/GlobalContext"
 import React, {useContext, useEffect, useState} from "react"
 import {Button, FlatList, Text, TouchableOpacity, View} from "react-native"
 import {Swipeable} from "react-native-gesture-handler"
 import {deletePeople} from "utils/actions"
 import {styles} from "utils/styles"
-import {GlobalContext} from "context/GlobalContext"
 
 export const PeopleScreen = ({navigation}) => {
 	const {people, deletePerson} = useContext(GlobalContext)
 	const [sortedPeople, setSortedPeople] = useState([])
 
-	// Sort people by date of birth on render
 	useEffect(() => {
 		const sorted = [...people].sort((a, b) => new Date(a.dob) - new Date(b.dob))
 		setSortedPeople(sorted)
