@@ -24,6 +24,9 @@ export const AddPersonScreen = ({navigation}) => {
 	const onChange = (_event, selectedDate) => {
 		const currentDate = selectedDate || date
 		setDate(currentDate)
+		if (Platform.OS === "android") {
+			setShowCalendar(false)
+		}
 	}
 
 	return (
