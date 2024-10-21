@@ -64,20 +64,16 @@ export const AddIdeaScreen = ({route, navigation}) => {
 									facing={facing}
 									ref={cameraRef}>
 									<View style={styles.buttonContainer}>
-										<TouchableOpacity style={styles.button}>
-											<Text
-												style={styles.text}
-												onPress={() => takePicture(cameraRef, setImage)}>
-												Take Picture
-											</Text>
+										<TouchableOpacity
+											style={styles.button}
+											onPress={() => takePicture(cameraRef, setImage)}>
+											<Text style={styles.text}>Take Picture</Text>
 										</TouchableOpacity>
 
-										<TouchableOpacity style={styles.button}>
-											<Text
-												style={styles.text}
-												onPress={() => flipCamera(facing, setFacing)}>
-												Flip Camera
-											</Text>
+										<TouchableOpacity
+											style={styles.button}
+											onPress={() => flipCamera(facing, setFacing)}>
+											<Text style={styles.text}>Flip Camera</Text>
 										</TouchableOpacity>
 									</View>
 								</CameraView>
