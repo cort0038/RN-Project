@@ -23,7 +23,6 @@ export const AddPersonScreen = ({navigation}) => {
 
 	const onChange = (_event, selectedDate) => {
 		const currentDate = selectedDate || date
-		setShowCalendar(false)
 		setDate(currentDate)
 	}
 
