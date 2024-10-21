@@ -172,6 +172,7 @@ export const styles = StyleSheet.create({
 		backgroundColor: "#fff"
 	},
 	datePickerAddPerson: {
+		flexDirection: "row",
 		marginBottom: 50,
 		alignItems: "flex-start"
 	},

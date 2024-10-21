@@ -2,6 +2,7 @@ import DateTimePicker from "@react-native-community/datetimepicker"
 import {GlobalContext} from "context/GlobalContext"
 import React, {useContext, useState} from "react"
 import {
+	Button,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
@@ -18,9 +19,11 @@ export const AddPersonScreen = ({navigation}) => {
 	const {addPerson} = useContext(GlobalContext)
 	const [name, setName] = useState("")
 	const [date, setDate] = useState(new Date())
+	const [showCalendar, setShowCalendar] = useState(false)
 
 	const onChange = (_event, selectedDate) => {
-		const currentDate = selectedDate
+		const currentDate = selectedDate || date
+		setShowCalendar(false)
 		setDate(currentDate)
 	}
 
@@ -38,18 +41,32 @@ export const AddPersonScreen = ({navigation}) => {
 						onChangeText={setName}
 					/>
 
-					<Text style={styles.labelAddPerson}>Select Date of Birth:</Text>
+					<Text style={styles.labelAddPerson}>Date of Birth:</Text>
+					<TextInput
+						style={styles.inputAddPerson}
+						value={new Date(date).toLocaleDateString(undefined, {
+							year: "numeric",
+							month: "long",
+							day: "numeric"
+						})}
+						editable={false}
+					/>
+
 					<View style={styles.datePickerAddPerson}>
-						<DateTimePicker
-							testID="dateTimePicker"
-							value={date}
-							mode="date"
-							is24Hour={true}
-							onChange={onChange}
-						/>
+						<Button onPress={() => setShowCalendar(true)} title="Change" />
+						{showCalendar && (
+							<DateTimePicker
+								testID="dateTimePicker"
+								value={date}
+								mode="date"
+								is24Hour={true}
+								onChange={onChange}
+							/>
+						)}
 					</View>
 				</View>
 			</TouchableWithoutFeedback>
+
 			<View style={styles.containerButtonAddPerson}>
 				<TouchableOpacity
 					style={styles.buttonAddIdea}
